@@ -4,4 +4,4 @@
 # 3.Commands (I have installed AWS CLI, java17, jenkins, kubectl, git, docker)
 # 4. Docker file
 # 5. Pipeline ( git) 
-# As per my knowledge i have done all this, created manually and will learn as well, i will try to upscale my skills
+# As per my knowledge and study i have done all this.
