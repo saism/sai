@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+
+  PublicSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: ap-south-1a
+
+  PublicSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref MyVPC
+      CidrBlock: 10.0.2.0/24
+      AvailabilityZone: ap-south-1b
+
+  MySecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow all traffic
+      VpcId: !Ref MyVPC
+  MyEKSCluster:
+    Type: AWS::EKS::Cluster
+    Properties:
+      Name: MyEKSCluster
+      RoleArn: arn:aws:iam::992382769101:role/eksClusterRole
+      ResourcesVpcConfig:
+        SubnetIds:
+          - !Ref PublicSubnetA
+          - !Ref PublicSubnetB
+
